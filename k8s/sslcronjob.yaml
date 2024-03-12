@@ -1,0 +1,14 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: ssl-certificate-expiry-alert
+spec:
+  schedule: "*/5 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: ssl-certificate-expiry-alert
+              image: devcenter14/ssl-certificate-expiry-alert:v1
+          restartPolicy: OnFailure
